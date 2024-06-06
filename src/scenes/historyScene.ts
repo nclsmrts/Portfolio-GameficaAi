@@ -1,10 +1,29 @@
-import { Actor, Color, Engine, FadeInOut, Keys, Scene, Transition, vec } from "excalibur"
+import { Actor, Color, Engine, FadeInOut, Keys, Scene, SceneActivationContext, Transition, vec } from "excalibur"
 import { Resources } from "../resources"
 
 export class historyScene extends Scene {
 
     // declaração do elementoTexto
     elementotexto?: HTMLElement
+
+    // Método para esmaecer um elemento HTML
+    fadeOutElement(elemento: HTMLElement) {
+        // pegar opacidade do elemento HTML
+        let opacidade = parseFloat(elemento.style.opacity)
+
+        // Repetir diminuição da opcidade
+        setInterval(() => {
+
+            // se elemetno ainda está visivel
+            if (opacidade > 0) {
+                // diminuir a opacidade
+                opacidade -= 0.03
+                // atualizar a opacidade do elemento
+                elemento.style.opacity = opacidade.toString()
+            }
+        }, 20)
+
+    }
 
     onTransition(direction: "in" | "out"): Transition | undefined {
         return new FadeInOut({
@@ -39,9 +58,9 @@ export class historyScene extends Scene {
             cliente,
             desde programas de treinamento interativo até sistemas de recompensa e engajamento de funcionários.</p>`
 
-
+        // adicionando a logo
         let actorlogovertical = new Actor({
-            pos: vec(875, 350)
+            pos: vec(875, 400)
         })
 
         let imagemvertical = Resources.Logovertical.toSprite()
@@ -54,9 +73,18 @@ export class historyScene extends Scene {
         // Configurar cena para monitorar o evento para tecla pressionada
         this.input.keyboard.on("press", (event) => {
             if (event.key == Keys.Enter) {
+                // criar transição suave do elemento texto
+                this.fadeOutElement(this.elementotexto!)
+                // direcionar para a proxima cena
                 Engine.goToScene("gamificacao")
             }
         })
+
+    }
+
+    onDeactivate(context: SceneActivationContext<undefined>): void {
+        // remover elemento texto da tela
+        this.elementotexto?.remove()
 
     }
 }
