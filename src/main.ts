@@ -1,4 +1,4 @@
-import { Engine, FadeInOut } from "excalibur";
+import { Engine } from "excalibur";
 import { welcomeScene } from "./scenes/welcomeScene";
 import { loader } from "./resources";
 import { historyScene } from "./scenes/historyScene";

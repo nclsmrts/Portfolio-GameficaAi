@@ -1,9 +1,36 @@
-import { Actor, Color, Engine, Resource, Scene, vec } from "excalibur";
+import { Actor, Color, Engine, FadeInOut, Keys, Scene, SceneActivationContext, Transition, vec } from "excalibur";
 import { Resources } from "../resources";
 
 export class gamificationScene extends Scene {
 
     elementotexto2?: HTMLElement
+
+    // Método para esmaecer um elemento HTML
+    fadeOutElement(elemento: HTMLElement) {
+        // pegar opacidade do elemento HTML
+        let opacidade = parseFloat(elemento.style.opacity)
+
+        // Repetir diminuição da opcidade
+        setInterval(() => {
+
+            // se elemetno ainda está visivel
+            if (opacidade > 0) {
+                // diminuir a opacidade
+                opacidade -= 0.03
+                // atualizar a opacidade do elemento
+                elemento.style.opacity = opacidade.toString()
+            }
+        }, 20)
+
+    }
+
+    onTransition(direction: "in" | "out"): Transition | undefined {
+        return new FadeInOut({
+            direction: direction,
+            color: Color.Black,
+            duration: 1000
+        })
+    }
 
     onInitialize(engine: Engine<any>): void {
         this.backgroundColor = Color.fromHex("#403f4c")
@@ -21,7 +48,7 @@ export class gamificationScene extends Scene {
 
         // texto 
         this.elementotexto2 = document.createElement("div") as HTMLElement
-
+        this.elementotexto2.style.opacity = "1"
         let containergame = document.querySelector(".container-game") as HTMLElement
         containergame.appendChild(this.elementotexto2)
 
@@ -32,5 +59,20 @@ export class gamificationScene extends Scene {
             engajar e motivar indivíduos a atingir determinados objetivos. Esta abordagem se utiliza de componentes
             como pontuação, níveis, recompensas, desafios, e feedback imediato, visando promover comportamentos
             desejados e aumentar a participação e o comprometimento dos participantes.</p>`
+
+
+        // configurar a cena para detectar a tecla enter
+
+        this.input.keyboard.on("press", (event) => {
+            if (event.key == Keys.Enter) {
+                this.fadeOutElement(this.elementotexto2!)
+                engine.goToScene("exposicao")
+            }
+        })
+
     }
+    onDeactivate(_context: SceneActivationContext<undefined>): void {
+        this.elementotexto2?.remove()
+    }
+
 }

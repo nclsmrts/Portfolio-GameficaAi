@@ -32,6 +32,7 @@ export class historyScene extends Scene {
             duration: 1000
         })
     }
+    
     onInitialize(Engine: Engine<any>): void {
         this.backgroundColor = Color.fromHex("#403f4c")
 
@@ -82,7 +83,7 @@ export class historyScene extends Scene {
 
     }
 
-    onDeactivate(context: SceneActivationContext<undefined>): void {
+    onDeactivate(_context: SceneActivationContext<undefined>): void {
         // remover elemento texto da tela
         this.elementotexto?.remove()
 
