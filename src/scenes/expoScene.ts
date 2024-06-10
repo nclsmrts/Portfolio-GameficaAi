@@ -1,4 +1,5 @@
 import { Color, Engine, FadeInOut, Scene, Transition } from "excalibur";
+import { Resources } from "../resources";
 
 export class expoScene extends Scene {
     elementotexto?: HTMLElement
@@ -28,5 +29,13 @@ export class expoScene extends Scene {
             color: Color.Black,
             duration: 1000
         })
+    }
+
+    onInitialize(engine: Engine<any>): void {
+        // Carregar o mapa 
+        let tiledmap = Resources.Mapa
+
+        // Adicionando o mapa na cena 
+        tiledmap.addToScene(this)
     }
 }
