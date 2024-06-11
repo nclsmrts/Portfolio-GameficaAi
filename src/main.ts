@@ -8,7 +8,8 @@ import { expoScene } from "./scenes/expoScene";
 const game = new Engine({
     width: 1200,
     height: 800,
-    canvasElementId: "jogo"
+    canvasElementId: "jogo",
+    pixelArt: true
 })
 
 game.addScene("Bemvindo", new welcomeScene())
@@ -17,5 +18,5 @@ game.addScene("gamificacao", new gamificationScene())
 game.addScene("exposicao", new expoScene)
 
 game.start(loader).then(() => {
-    game.goToScene("Bemvindo")
+    game.goToScene("exposicao")
 })
