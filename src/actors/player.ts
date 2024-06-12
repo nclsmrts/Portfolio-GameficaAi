@@ -1,4 +1,4 @@
-import { Actor, Color, Engine, Keys, vec } from "excalibur";
+import { Actor, CollisionType, Color, Engine, Keys, vec } from "excalibur";
 
 export class Player extends Actor {
     // Propriedade do player
@@ -12,6 +12,7 @@ export class Player extends Actor {
             height: 32,
             name: "Jogador",
             color: Color.Red,
+            collisionType: CollisionType.Active
         })
 
     }
@@ -57,7 +58,7 @@ export class Player extends Actor {
             }
         })
 
-        // configura o player para monitorar evento "release" -> soltar tecla
+        // configura o player para monitorar evento "release" -> soltar tecla, horizontal
         engine.input.keyboard.on("release", (event) => {
             // faxer o player parar ao soltar a tecla de movimentação
             if (
@@ -71,6 +72,7 @@ export class Player extends Actor {
             }
         })
 
+        // configura o player para monitorar evento "release" -> soltar tecla, vertical
         engine.input.keyboard.on("release", (event) => {
             // faxer o player parar ao soltar a tecla de movimentação
             if (
@@ -83,7 +85,7 @@ export class Player extends Actor {
                 this.vel.y = 0
             }
         })
-
+        
     }
 
 }
