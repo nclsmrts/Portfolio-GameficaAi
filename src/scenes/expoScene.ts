@@ -1,6 +1,7 @@
 import { Actor, CollisionType, Color, Engine, FadeInOut, Scene, Transition, vec } from "excalibur";
 import { Resources } from "../resources";
 import { Player } from "../actors/player";
+import { Npc } from "../actors/npc";
 
 export class expoScene extends Scene {
     elementotexto?: HTMLElement
@@ -33,6 +34,9 @@ export class expoScene extends Scene {
     }
 
     onInitialize(engine: Engine<any>): void {
+        
+        // Ativar modo Debug
+        // engine.toggleDebug()
 
         // Carregar o mapa 
         let tiledmap = Resources.Mapa
@@ -50,13 +54,52 @@ export class expoScene extends Scene {
         // Definir zoom da camera para aumentar um pouco a vizualização
         this.camera.zoom = 1.4
 
+        // Carregar spawn point do player
+        let spawnpoint = tiledmap.getObjectsByName("player_spawn")[0]
+
         // Criação e configuração do Player
-        let jogador = new Player()
+        let jogador = new Player(vec(spawnpoint.x + offsetX, spawnpoint.y + offsetY))
 
         jogador.z = 1
 
         // Adicionar jogador na cena 
         this.add(jogador)
+
+        // pegar spawn point dos NPCs
+        let npcSpawnPointA = tiledmap.getObjectsByName("npc_a")[0]
+        let npcSpawnPointb = tiledmap.getObjectsByName("npc_b")[0]
+        let npcSpawnPointc = tiledmap.getObjectsByName("npc_c")[0]
+
+        // configurar NPCs
+
+        let npca = new Npc(
+            vec(npcSpawnPointA.x + offsetX, npcSpawnPointA.y + offsetY),
+            Color.Blue,
+            "npcA"
+            )
+
+        let npcb = new Npc(
+            vec(npcSpawnPointb.x + offsetX, npcSpawnPointb.y + offsetY),
+            Color.Chartreuse,
+            "npcB"
+        )
+
+        let npcc = new Npc(
+            vec(npcSpawnPointc.x + offsetX, npcSpawnPointc.y + offsetY),
+            Color.Yellow,
+            "npcC"
+        )
+
+        // adicionando os NPCs no jogo
+        this.add(npca)
+        this.add(npcb)
+        this.add(npcc)
+
+        // Focar a camera no player
+        // this.camera.strategy.lockToActor(jogador)
+
+        // aumentar o zoom da camera
+        // this.camera.zoom = 2
 
         // Adicionar colisão com cada objeto
         // Pegar a camada de objetos colisores

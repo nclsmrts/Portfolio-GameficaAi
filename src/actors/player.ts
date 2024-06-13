@@ -1,13 +1,14 @@
-import { Actor, CollisionType, Color, Engine, Keys, vec } from "excalibur";
+import { Actor, Animation, CollisionType, Color, Engine, Keys, SpriteSheet, Vector, vec } from "excalibur";
+import { Resources } from "../resources";
 
 export class Player extends Actor {
     // Propriedade do player
     private velocidade: number = 180
 
     //Configuração do Player
-    constructor() {
+    constructor(posicao: Vector) {
         super({
-            pos: vec(500, 500),
+            pos: posicao,
             width: 32,
             height: 32,
             name: "Jogador",
@@ -18,6 +19,41 @@ export class Player extends Actor {
     }
 
     onInitialize(engine: Engine<any>): void {
+        // Configurar sprite do player
+        const playerSpriteSheet = SpriteSheet.fromImageSource({
+            image: Resources.playerSpriteSheet,
+            grid: {
+                spriteWidth: 32,
+                spriteHeight: 64,
+                columns: 56,
+                rows: 20
+            },
+            spacing: {
+                originOffset: {
+                    y: 4
+                }
+            }
+        })
+
+        // criar as animações
+        const duracaoframeanimacao = 70
+        
+        // animações idle
+        // idle esquerda
+        const leftIdle = new Animation({
+            frames: [
+                { graphic: playerSpriteSheet.getSprite(12, 1) },
+                { graphic: playerSpriteSheet.getSprite(13, 1) },
+                { graphic: playerSpriteSheet.getSprite(14, 1) },
+                { graphic: playerSpriteSheet.getSprite(15, 1) },
+                { graphic: playerSpriteSheet.getSprite(16, 1) },
+                { graphic: playerSpriteSheet.getSprite(17, 1) },
+            ],
+            frameDuration: 70
+        })
+        this.graphics.add("left-idle", leftIdle)
+        this.graphics.use("left-idle")
+
         // Configurar player para monitorar evento "hold" -> segurar tecla
         engine.input.keyboard.on("hold", (event) => {
             // Detectar qual tecla está pressionada
@@ -85,7 +121,7 @@ export class Player extends Actor {
                 this.vel.y = 0
             }
         })
-        
+
     }
 
 }
