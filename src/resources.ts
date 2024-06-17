@@ -11,12 +11,14 @@ import tsxestoquePath from "./maps/tileset_estoque.tsx?url"
 import tsxbibliotecaPath from "./maps/tileset_biblioteca?url"
 import tmxmapaPath from "./maps/showroom_map.tmx?url"
 import playerSpritePath from "./sprites/player.png"
+import npcMesaA from "./images/npc_mesa_a.png"
 
 export const Resources = {
   Sword: new ImageSource(sword),
   Logo: new ImageSource(logo),
   Logovertical: new ImageSource(logovertical),
   logoverticalcena3: new ImageSource(logoverticalcena3),
+  npc_mesaA: new ImageSource(npcMesaA),
   playerSpriteSheet: new ImageSource(playerSpritePath, { filtering: ImageFiltering.Pixel }),
   Mapa: new TiledResource(tmxmapaPath, {
     pathMap: [

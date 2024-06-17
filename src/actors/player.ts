@@ -84,7 +84,7 @@ export class Player extends Actor {
         this.graphics.add("down-idle", DownIdle)
 
         // Definir animação padrão 
-        this, this.graphics.use("down-idle")
+        this.graphics.use("down-idle")
 
         // idle cima
         const UpIdle = new Animation({
@@ -183,7 +183,7 @@ export class Player extends Actor {
         })
 
         // Configurar player para monitorar evento "hold" -> segurar tecla
-        engine.input.keyboard.on("press", (event) => {
+        engine.input.keyboard.on("hold", (event) => {
             // Detectar qual tecla está pressionada
             switch (event.key) {
                 case Keys.A:
@@ -277,6 +277,30 @@ export class Player extends Actor {
 
         })
 
+        engine.input.keyboard.on("press", (event) => {
+            // Se a telca pressionada for F e tiver objeto proximo
+            if (event.key == Keys.F && this.objetoproximo) {
+                // Identificar o alvo da interação
+                if (this.ultimocolisor?.owner.name == "mesa_stand_a") {
+                    console.log("Essa é a mesa A");
+
+                    // Vai para a cena passando qual o objeto da interação
+                    engine.goToScene("case", {
+                        sceneActivationData: {
+                            // Passa o nome do actor que interagiu com o Player
+                            nomeDoActor: this.ultimocolisor?.owner.name
+                        }
+                    })
+                }
+                if (this.ultimocolisor?.owner.name == "mesa_stand_b") {
+                    console.log("Essa é a mesa B");
+                }
+                if (this.ultimocolisor?.owner.name == "mesa_stand_c") {
+                    console.log("Essa é a mesa C");
+                }
+            }
+        })
+
     }
 
     onPreCollisionResolve(self: Collider, other: Collider, side: Side, contact: CollisionContact): void {
@@ -293,9 +317,8 @@ export class Player extends Actor {
         if (this.ultimocolisor && this.pos.distance(this.ultimocolisor.worldPos) > 40) {
             // Marcar que o objeto não está proximo
             this.objetoproximo = false
-            console.log("Está longe");
+            // console.log("Está longe");
 
         }
     }
-
 }

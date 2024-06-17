@@ -65,3 +65,25 @@ body {
     line-height: 2;
 }
 
+
+.case1{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    width: 350px;
+    height: 500px;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    border: solid 15px #cf5830;
+    padding: 40px;
+    font-family: "anta";
+}
+
+.case1 p {
+    font-size: 30px;
+    text-align: justify;
+    line-height: 2;
+}
