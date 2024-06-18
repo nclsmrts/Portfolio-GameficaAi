@@ -34,9 +34,16 @@ export class expoScene extends Scene {
     }
 
     onInitialize(engine: Engine<any>): void {
-        
+
         // Ativar modo Debug
         // engine.toggleDebug()
+
+        // carregar musica de fundo (bgm)
+        let musicafundo = Resources.classicBgm
+        
+        // configurar a musica e executar
+        musicafundo.loop = true
+        musicafundo.play(0.5)
 
         // Carregar o mapa 
         let tiledmap = Resources.Mapa
@@ -76,7 +83,7 @@ export class expoScene extends Scene {
             vec(npcSpawnPointA.x + offsetX, npcSpawnPointA.y + offsetY),
             Color.Blue,
             "npcA"
-            )
+        )
 
         let npcb = new Npc(
             vec(npcSpawnPointb.x + offsetX, npcSpawnPointb.y + offsetY),
