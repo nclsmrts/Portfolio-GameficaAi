@@ -276,7 +276,8 @@ export class Player extends Actor {
             }
 
         })
-
+        
+        // configurar a interação com a mesa
         engine.input.keyboard.on("press", (event) => {
             // Se a telca pressionada for F e tiver objeto proximo
             if (event.key == Keys.F && this.objetoproximo) {

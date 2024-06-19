@@ -1,13 +1,12 @@
-import { Actor, Color, Engine, FadeInOut, Keys, Resource, Scene, SceneActivationContext, Transition, vec } from "excalibur";
+import { Actor, Color, Engine, FadeInOut, Keys, Resource, Scene, SceneActivationContext, Sprite, Transition, vec } from "excalibur";
 import { Resources } from "../resources";
 
 export class caseScene extends Scene {
     private objetointeração: any
-
     private textoDacena?: string
-    elementotexto1?: HTMLElement
-    elementotexto2?: HTMLElement
-    elementotexto3?: HTMLElement
+    private elementotexto?: HTMLElement
+    private actorEmpresa?: Actor
+    private listaImagens?: Sprite[]
 
 
     fadeOutElement(elemento: HTMLElement) {
@@ -15,32 +14,50 @@ export class caseScene extends Scene {
 
         setInterval(() => {
             if (opacidade > 0) {
-                opacidade -= 0.03
+                opacidade -= 0.05
                 elemento.style.opacity = opacidade.toString()
             }
         })
     }
 
-    // onTransition(direction: "in" | "out"): Transition | undefined {
-    //     return new FadeInOut({
-    //         direction: direction,
-    //         color: Color.Black,
-    //         duration: 20
-    //     })
-    // }
+    onTransition(direction: "in" | "out"): Transition | undefined {
+        return new FadeInOut({
+            direction: direction,
+            color: Color.Black,
+            duration: 250
+        })
+    }
 
     onInitialize(engine: Engine<any>): void {
         this.backgroundColor = Color.Gray
 
-
-
-
-        this.elementotexto1 = document.createElement("div") as HTMLElement
-        this.elementotexto1.style.opacity = "1"
+        // Adicionando o texto 
+        this.elementotexto = document.createElement("div") as HTMLElement
+        this.elementotexto.style.opacity = "1"
         let containergame = document.querySelector(".container-game") as HTMLElement
-        containergame.appendChild(this.elementotexto1)
-        this.elementotexto1.classList.add("case")
-        this.elementotexto1.innerHTML = this.textoDacena!
+        containergame.appendChild(this.elementotexto)
+        this.elementotexto.classList.add("case")
+
+        // this.elementotexto.innerHTML = this.textoDacena!
+
+        // Criar actor para receber img
+        this.actorEmpresa = new Actor({
+            pos: vec(engine.drawWidth - 300, engine.halfDrawHeight)
+        })
+
+        let imgmesaa = Resources.npc_mesaA.toSprite()
+        let imgmesab = Resources.npc_mesaB.toSprite()
+        let imgmesac
+
+        this.listaImagens = [imgmesaa, imgmesab]
+
+        // Sair da cena
+        this.input.keyboard.on("press", (event) => {
+            if (event.key == Keys.F) {
+                this.fadeOutElement(this.elementotexto!)
+                this.engine.goToScene("exposicao")
+            }
+        })
 
     }
 
@@ -48,98 +65,55 @@ export class caseScene extends Scene {
         // Pegar dados vindos da cena passada
         this.objetointeração = context.data
 
-        // console.log(this.objetointeração);
-
-        // se for a mesa a 
+        // se for a mesa A
         if (this.objetointeração.nomeDoActor == "mesa_stand_a") {
-            // this.textoDacena = "Essa é a descrição do case a"
 
-            // this.elementotexto1 = document.createElement("div") as HTMLElement
-            // this.elementotexto1.style.opacity = "1"
-            // let containergame = document.querySelector(".container-game") as HTMLElement
-            // containergame.appendChild(this.elementotexto1)
-            // this.elementotexto1.classList.add("case")
-            // this.elementotexto1.innerHTML = "<p> Gamificação é a aplicação de elementos típicos de jogos em contextos não lúdicos, com o objetivo de"
+            this.elementotexto!.innerHTML = "<p>salve, sfaefaffaf</p>"
 
-            let textoDacena = "<p>salve</p>"
+            this.elementotexto!.style.opacity = "1"
 
-            let npc_a = new Actor({
-                pos: vec(850, 400)
-            })
+            // inserir a imagem
+            this.actorEmpresa?.graphics.add(this.listaImagens![0])
 
-            let imgmesaa = Resources.npc_mesaA.toSprite()
-            npc_a.graphics.add(imgmesaa)
-            imgmesaa.scale = vec(1.7, 1.7)
-            this.add(npc_a)
+            // Mudar o zoom da img 
+            this.actorEmpresa!.graphics.current!.scale = vec(1.5, 1.5)
 
-            this.input.keyboard.on("press", (event) => {
-                if (event.key == Keys.F) {
-                    this.fadeOutElement(this.elementotexto1!)
-                    this.remove(npc_a)
-                    this.engine.goToScene("exposicao")
-                }
-            })
         }
 
-        // se for a b
+        // se for a B
         if (this.objetointeração.nomeDoActor == "mesa_stand_b") {
 
-            this.elementotexto2 = document.createElement("div") as HTMLElement
-            this.elementotexto2.style.opacity = "1"
-            let containergame = document.querySelector(".container-game") as HTMLElement
-            containergame.appendChild(this.elementotexto2)
-            this.elementotexto2.classList.add("case")
-            this.elementotexto2.innerHTML = "<p>salve</p>"
+            // inserir texto
+            this.elementotexto!.innerHTML = "<p>Nossa empresa cria soluções de gamificação personalizadas para empresas de todos os tamanhos e setores.</p>"
+            this.elementotexto!.style.opacity = "1"
 
-            let npc_b = new Actor({
-                pos: vec(850, 400)
-            })
+            // inserir a img
+            this.actorEmpresa?.graphics.add(this.listaImagens![1])
 
-            let imgmesab = Resources.npc_mesaB.toSprite()
-            npc_b.graphics.add(imgmesab)
-            this.add(npc_b)
-
-            this.input.keyboard.on("press", (event) => {
-                if (event.key == Keys.F) {
-                    this.fadeOutElement(this.elementotexto2!)
-                    this.remove(npc_b)
-                    this.engine.goToScene("exposicao")
-                }
-            })
+            // mudar o zoom da img
+            this.actorEmpresa!.graphics.current!.scale = vec(1.7, 1.7)
         }
 
-        // se for a c
+        // se for a C
         if (this.objetointeração.nomeDoActor == "mesa_stand_c") {
-            // this.textoDacena = "Essa é a descrição do case c"
 
-            this.elementotexto3 = document.createElement("div") as HTMLElement
-            this.elementotexto3.style.opacity = "1"
-            let containergame = document.querySelector(".container-game") as HTMLElement
-            containergame.appendChild(this.elementotexto3)
-            this.elementotexto3.classList.add("case")
-            this.elementotexto3.innerHTML = "<p>Uma escola está desperdiçando muita comida, mini game seria um esconde-esconde, onde Dudu teria que achar os meninos que estão desperdiçando comida, com um sistema de pontos. Esse mundo explicaria a forma que a empresa achou para reduzir o desperdício de comida, com pontuações e prêmios."
+            // inserir texto
+            this.elementotexto!.innerHTML = "<p>Essa é a descrição do case c</p>"
+            this.elementotexto!.style.opacity = "1"
 
-            let npc_b = new Actor({
-                pos: vec(850, 400)
-            })
+            // Inserir a img 
+            this.actorEmpresa?.graphics.add(this.listaImagens![0])
 
-            let imgmesab = Resources.npc_mesaB.toSprite()
-            npc_b.graphics.add(imgmesab)
-            this.add(npc_b)
+            // mudar o zoom da img
+            this.actorEmpresa!.graphics.current!.scale = vec(1.7, 1.7)
 
-
-            this.input.keyboard.on("press", (event) => {
-                if (event.key == Keys.F) {
-                    this.fadeOutElement(this.elementotexto3!)
-                    this.remove(npc_b)
-                    this.engine.goToScene("exposicao")
-                }
-            })
         }
+
+        this.add(this.actorEmpresa!)
+
     }
 
     onDeactivate(context: SceneActivationContext<undefined>): void {
-        this.elementotexto1?.remove()
-        this.elementotexto2?.remove()
+        this.elementotexto!.style.opacity = "0"
     }
 }
