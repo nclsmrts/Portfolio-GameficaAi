@@ -40,7 +40,7 @@ export class expoScene extends Scene {
 
         // carregar musica de fundo (bgm)
         let musicafundo = Resources.classicBgm
-        
+
         // configurar a musica e executar
         musicafundo.loop = true
         musicafundo.play(0.5)
@@ -81,19 +81,16 @@ export class expoScene extends Scene {
 
         let npca = new Npc(
             vec(npcSpawnPointA.x + offsetX, npcSpawnPointA.y + offsetY),
-            Color.Blue,
             "npcA"
         )
 
         let npcb = new Npc(
             vec(npcSpawnPointb.x + offsetX, npcSpawnPointb.y + offsetY),
-            Color.Chartreuse,
             "npcB"
         )
 
         let npcc = new Npc(
             vec(npcSpawnPointc.x + offsetX, npcSpawnPointc.y + offsetY),
-            Color.Yellow,
             "npcC"
         )
 

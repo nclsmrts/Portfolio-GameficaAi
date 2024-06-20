@@ -99,8 +99,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,9907,0,0,0,0,0,0,9907,0,0,0,0,0,0,9907,0,0,0,0,0,0,
-0,0,0,0,0,0,10131,10132,9923,0,0,0,0,10131,10132,9923,0,0,0,0,10131,10132,9923,0,0,0,0,0,0,
-0,0,0,0,0,0,10147,10148,0,0,0,0,0,10147,10148,0,0,0,0,0,10147,10148,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,9923,0,0,0,0,0,0,9923,0,0,0,0,0,0,9923,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,9904,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,9920,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,9936,0,0,0,9950,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -114,17 +114,17 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="6" name="ObjetosColisores" visible="0">
+ <objectgroup id="6" name="ObjetosColisores">
   <object id="3" name="Mesa_sinuca" x="174.333" y="335" width="98" height="77.6667"/>
   <object id="4" name="Tacos" x="65.9904" y="361.01" width="30.0015" height="21.0007" rotation="359.958"/>
   <object id="5" name="Planta" x="80.6667" y="118" width="26.3333" height="22.3333"/>
   <object id="6" name="Planta" x="817.125" y="117.125" width="25.25" height="23.25"/>
-  <object id="7" name="mesa_stand_a" x="649.273" y="216.545" width="76.9091" height="32.9091"/>
+  <object id="7" name="mesa_stand_a" x="649.273" y="214.545" width="76.9091" height="32.9091"/>
   <object id="10" name="bancada_pc" x="584.5" y="216.727" width="46.25" height="35.7727"/>
-  <object id="13" name="mesa_stand_b" x="424.909" y="216.727" width="77.6364" height="33.0909"/>
+  <object id="13" name="mesa_stand_b" x="424.727" y="214.545" width="77.6364" height="33.0909"/>
   <object id="15" name="bancada_pc" x="361.273" y="216.182" width="45.2727" height="36.1818"/>
   <object id="16" name="bancada_pc" x="137.364" y="216.341" width="45.2727" height="35.4773"/>
-  <object id="17" name="mesa_stand_c" x="200.807" y="216.614" width="77.6364" height="33.8977"/>
+  <object id="17" name="mesa_stand_c" x="200.443" y="212.978" width="77.6364" height="33.8977"/>
   <object id="18" name="armario" x="415.273" y="95.8182" width="30.9091" height="30.3636"/>
   <object id="20" name="armario" x="447.455" y="95.9091" width="30.9091" height="30.3636"/>
   <object id="21" name="armario" x="479.455" y="95.9091" width="30.9091" height="30.3636"/>
@@ -136,9 +136,6 @@
   <object id="28" name="fliperama" x="826.727" y="393.727" width="36" height="20.1819"/>
   <object id="30" name="sofa" x="671.75" y="463.25" width="96.5" height="38.5"/>
   <object id="31" name="sofa" x="127.083" y="463.083" width="96.5" height="38.5"/>
-  <object id="33" name="cadeira_stand" x="651.455" y="250.182" width="40.7273" height="15.4545"/>
-  <object id="34" name="cadeira_stand" x="427.455" y="250.091" width="40.7273" height="15.4545"/>
-  <object id="35" name="cadeira_stand" x="203.455" y="250.818" width="40.7273" height="15.4545"/>
  </objectgroup>
  <layer id="5" name="BlocosColisores" width="29" height="20" opacity="0" offsetx="138" offsety="100">
   <properties>

@@ -12,7 +12,7 @@ export class Player extends Actor {
         super({
             pos: posicao,
             width: 35,
-            height: 40,
+            height: 45,
             name: "Jogador",
             color: Color.Red,
             collisionType: CollisionType.Active

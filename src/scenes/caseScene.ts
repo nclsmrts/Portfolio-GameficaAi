@@ -3,7 +3,6 @@ import { Resources } from "../resources";
 
 export class caseScene extends Scene {
     private objetointeração: any
-    private textoDacena?: string
     private elementotexto?: HTMLElement
     private actorEmpresa?: Actor
     private listaImagens?: Sprite[]
@@ -20,13 +19,13 @@ export class caseScene extends Scene {
         })
     }
 
-    onTransition(direction: "in" | "out"): Transition | undefined {
-        return new FadeInOut({
-            direction: direction,
-            color: Color.Black,
-            duration: 250
-        })
-    }
+    // onTransition(direction: "in" | "out"): Transition | undefined {
+    //     return new FadeInOut({
+    //         direction: direction,
+    //         color: Color.Black,
+    //         duration: 250
+    //     })
+    // }
 
     onInitialize(engine: Engine<any>): void {
         this.backgroundColor = Color.Gray
@@ -68,7 +67,7 @@ export class caseScene extends Scene {
         // se for a mesa A
         if (this.objetointeração.nomeDoActor == "mesa_stand_a") {
 
-            this.elementotexto!.innerHTML = "<p>salve, sfaefaffaf</p>"
+            this.elementotexto!.innerHTML = "<p>Uma escola está desperdiçando muita comida, mini game seria um esconde-esconde, onde Dudu teria que achar os meninos que estão desperdiçando comida, com um sistema de pontos. Esse mundo explicaria a forma que a empresa achou para reduzir o desperdício de comida, com pontuações e prêmios.</p>"
 
             this.elementotexto!.style.opacity = "1"
 
@@ -84,7 +83,7 @@ export class caseScene extends Scene {
         if (this.objetointeração.nomeDoActor == "mesa_stand_b") {
 
             // inserir texto
-            this.elementotexto!.innerHTML = "<p>Nossa empresa cria soluções de gamificação personalizadas para empresas de todos os tamanhos e setores.</p>"
+            this.elementotexto!.innerHTML = "<p>Seria uma empresa que teria problemas com o desempenho com funcionários, o mini game desse mundo seria uma corrida em que você teria que acertas a teclas para correr mais entre os funcionários e você ou um mini game de plataforma onde você teria que terminar em um determinado tempo, com um sistema de pontos. Esse mundo explicaria como a empresa aumentou o desempenho com os funcionários com uma competição interna valendo pontos. </p>"
             this.elementotexto!.style.opacity = "1"
 
             // inserir a img
@@ -98,7 +97,7 @@ export class caseScene extends Scene {
         if (this.objetointeração.nomeDoActor == "mesa_stand_c") {
 
             // inserir texto
-            this.elementotexto!.innerHTML = "<p>Essa é a descrição do case c</p>"
+            this.elementotexto!.innerHTML = "<p>Seria um escritório onde o próprio estaria bagunçado, e seria um mini game de erros, onde o jogador teria que decorar um seria um mini game onde você teria que organizar o escritório, como um quebra-cabeça. Esse mundo explicaria como a empresa usou a gamificação para ajudar a organizar o escritório. </p>"
             this.elementotexto!.style.opacity = "1"
 
             // Inserir a img 

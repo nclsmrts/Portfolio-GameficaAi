@@ -11,7 +11,8 @@ import tsxestoquePath from "./maps/tileset_estoque.tsx?url"
 import tsxbibliotecaPath from "./maps/tileset_biblioteca?url"
 import tmxmapaPath from "./maps/showroom_map.tmx?url"
 import playerSpritePath from "./sprites/player.png"
-import npcSpritePath from "./sprites/npcA.png"
+import npcASpritePath from "./sprites/npcA.png"
+import npcBspritePath from "./sprites/npcB.png"
 import npcMesaA from "./images/npc_mesa_a.png"
 import npcMesaB from "./images/npc_mesa_b.png"
 import ritmada from "./sounds/ritmada_zelda.mp3"
@@ -25,7 +26,8 @@ export const Resources = {
   npc_mesaA: new ImageSource(npcMesaA),
   npc_mesaB: new ImageSource(npcMesaB),
   playerSpriteSheet: new ImageSource(playerSpritePath, { filtering: ImageFiltering.Pixel }),
-  npcSpriteSheet: new ImageSource(npcSpritePath, {filtering: ImageFiltering.Pixel }),
+  npcASpriteSheet: new ImageSource(npcASpritePath, { filtering: ImageFiltering.Pixel }),
+  npcBspriteSheet: new ImageSource(npcBspritePath, { filtering: ImageFiltering.Pixel }),
   RitimadaBgm: new Sound(ritmada),
   classicBgm: new Sound(classico),
   Mapa: new TiledResource(tmxmapaPath, {
